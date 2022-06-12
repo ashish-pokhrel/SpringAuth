@@ -4,6 +4,10 @@ import com.user.springauth.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class SpringAuthApplication {
@@ -26,6 +30,12 @@ public class SpringAuthApplication {
 //        User user2 = new User(4L, "normal@miu.edu", "12345678", true, userRoles2);
 //        userService.save(user);
 //        userService.save(user2);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
     }
 
     public static void main(String[] args) {
