@@ -1,5 +1,6 @@
 package com.user.springauth.services;
 
+import com.user.springauth.models.User;
 import com.user.springauth.repositories.IUserPermissionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class UserPermissionService {
     private IUserPermissionRepo permissionRepo;
 
     public boolean isAuthorized(long id) {
-        List<String> roles = permissionRepo.getUserRoles(id);
+        List<User> roles = permissionRepo.getUserRoles(id);
         return  true;
     }
 }

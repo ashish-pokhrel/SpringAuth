@@ -1,5 +1,7 @@
 package com.user.springauth.controllers;
 
+import com.user.springauth.models.Admin;
+import com.user.springauth.models.Normal;
 import com.user.springauth.models.User;
 import com.user.springauth.services.UserPermissionService;
 import com.user.springauth.services.UserService;
@@ -15,8 +17,14 @@ public class UserController {
     @Autowired
     private UserPermissionService permissionService;
 
-    @PostMapping("/save")
-    public String saveUser(@RequestBody User user) {
+    @PostMapping("/saveAdmin")
+    public String saveAdmin(@RequestBody Admin user) {
+        userService.save(user);
+        return "Saved Successfully";
+    }
+
+    @PostMapping("/saveNormal")
+    public String saveNormal(@RequestBody Normal user) {
         userService.save(user);
         return "Saved Successfully";
     }

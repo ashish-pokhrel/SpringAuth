@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface IUserPermissionRepo extends JpaRepository<User, Long> {
-    @Query("SELECT distinct r.Type FROM User u LEFT join u.userRole r where u.Id =:id")
-    List<String> getUserRoles(long id);
+    @Query("SELECT u FROM User u where u.Id =:id")
+    List<User> getUserRoles(long id);
 }

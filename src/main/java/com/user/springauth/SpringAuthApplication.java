@@ -1,25 +1,15 @@
 package com.user.springauth;
 
-import com.user.springauth.models.User;
-import com.user.springauth.models.UserRole;
-import com.user.springauth.services.UserRoleService;
 import com.user.springauth.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class SpringAuthApplication {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserRoleService roleService;
 
    // @PostConstruct
     public void saveInitialUser() {

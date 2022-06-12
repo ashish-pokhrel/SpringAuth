@@ -12,6 +12,8 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Role")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
