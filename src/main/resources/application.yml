@@ -1,6 +1,2 @@
-#server:
-#  port: 8083
-#
-
-jwt:
-  secret: mySecretKey
+server:
+  port: 9001

@@ -1,5 +1,7 @@
 package com.user.springauth.controllers;
 
+import com.user.springauth.models.UserRole;
+import com.user.springauth.services.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
