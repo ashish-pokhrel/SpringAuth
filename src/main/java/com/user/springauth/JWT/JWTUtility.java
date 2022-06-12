@@ -1,5 +1,6 @@
 package com.user.springauth.JWT;
 
+import com.user.springauth.models.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -52,9 +53,12 @@ public class JWTUtility {
 
 
     //generate token for user
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userDetails.getUsername());
+        claims.put("roles", user.getRole());
+        claims.put("id",user.getId());
+        claims.put("userName",user.getUserName());
+        return doGenerateToken(claims, user.getUserName());
     }
 
 
