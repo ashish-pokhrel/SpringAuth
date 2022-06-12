@@ -24,4 +24,7 @@ public class User {
     private String Password;
 
     private boolean isActive;
+
+    @Column(insertable = false, updatable = false)
+    private String Role;
 }

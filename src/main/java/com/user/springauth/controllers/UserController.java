@@ -35,6 +35,11 @@ public class UserController {
         return userService.getById(id);
     }
 
+    @GetMapping("/getRoleById/{id}")
+    public String getRoleById(@PathVariable Long id) {
+        return userService.getRoleById(id);
+    }
+
     @GetMapping("/getUserByName/{userName}")
     public User getUserByName(@PathVariable String userName) {
         return userService.getUserByUserName(userName);

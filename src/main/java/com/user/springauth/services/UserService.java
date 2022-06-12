@@ -14,7 +14,7 @@ public class UserService {
 
     public void save(User user) {
 //        if (!userRepo.existsById(user.getId()))
-            userRepo.save(user);
+        userRepo.save(user);
     }
 
     public User getById(Long id) {
@@ -30,4 +30,8 @@ public class UserService {
         return user;
     }
 
+    public String getRoleById(Long id) {
+        String role = userRepo.getRoleById(id);
+        return role;
+    }
 }
