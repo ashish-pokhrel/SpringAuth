@@ -36,7 +36,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
         if (null != userName && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails
-                    = authService.loadUserByUsername(userName);
+                    = authService.getUserByUsername(userName);
 
             if (jwtUtility.validateToken(token, userDetails)) {
                 String requestedUrl = httpServletRequest.getRequestURI();

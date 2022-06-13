@@ -5,11 +5,9 @@ import com.user.springauth.services.UserCORSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -35,5 +33,12 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userCorsService.saveUser(user,"saveNormal");
         return "Saved Successfully";
+    }
+
+
+    @GetMapping("/loadUserByUsername")
+    public UserDetails loadUserByUsername() {
+        var result = userCorsService.loadUserByUsername("admin7@miu.edu");
+        return  result;
     }
 }

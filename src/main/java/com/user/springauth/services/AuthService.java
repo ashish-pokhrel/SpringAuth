@@ -17,6 +17,14 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserDetails user = userCorsService.loadUserByUsername(username);
+//        org.springframework.security.core.userdetails.User user1 = new org.springframework.security.core.userdetails.User(
+//                user.getUsername(), user.getPassword(), new ArrayList<>()
+//        );
+        return user;
+    }
+
+    public User getUserByUsername(String username) throws UsernameNotFoundException {
         User user = userCorsService.getUserByUserName(username);
 //        org.springframework.security.core.userdetails.User user1 = new org.springframework.security.core.userdetails.User(
 //                user.getUsername(), user.getPassword(), new ArrayList<>()
