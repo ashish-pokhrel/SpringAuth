@@ -40,7 +40,7 @@ public class JWTUtility {
 
 
     //for retrieving any information from token we will need the secret key
-    private Claims getAllClaimsFromToken(String token) {
+    public Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
     }
 
@@ -76,5 +76,9 @@ public class JWTUtility {
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+    public Boolean validateTokenByUserName(String token, String userName) {
+        final String username = getUsernameFromToken(token);
+        return (username.equals(userName) && !isTokenExpired(token));
     }
 }

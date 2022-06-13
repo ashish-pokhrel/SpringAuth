@@ -45,6 +45,7 @@ public class UserController {
         return token;
     }
 
+    @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'saveAdmin')")
     @PostMapping("/saveAdmin")
     public String saveAdmin(@RequestBody Admin user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -59,6 +60,7 @@ public class UserController {
         return "Saved Successfully";
     }
 
+    @PreAuthorize("hasPermission({'ADMIN'}, 'get')")
     @GetMapping("/get/{id}")
     public User getUser(@PathVariable Long id) {
         return userService.getById(id);
@@ -73,4 +75,5 @@ public class UserController {
     public User getUserByName(@PathVariable String userName) {
         return userService.getUserByUserName(userName);
     }
+
 }
