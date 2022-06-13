@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class CommentCORSService extends RequestService {
-    @Value("${domain.blog}")
-    private String blogDomain;
+    @Value("${domain.comment}")
+    private String commentDomain;
     @Autowired
     private RestTemplate restTemplate;
 
@@ -31,7 +31,16 @@ public class CommentCORSService extends RequestService {
     public String save(Comment comment) {
         Long currentUser = getCurrentUser();
         comment.setPostedBy(currentUser);
-        String path = (blogDomain + "save");
+        String path = (commentDomain + "save");
+        HttpMethod methodType = HttpMethod.POST;
+        String result = restTemplate.exchange(path, methodType, getHeadersWithToken(comment), String.class).getBody();
+        return result;
+    }
+
+    public String edit(Comment comment) {
+        Long currentUser = getCurrentUser();
+        comment.setPostedBy(currentUser);
+        String path = (commentDomain + "edit");
         HttpMethod methodType = HttpMethod.POST;
         String result = restTemplate.exchange(path, methodType, getHeadersWithToken(comment), String.class).getBody();
         return result;

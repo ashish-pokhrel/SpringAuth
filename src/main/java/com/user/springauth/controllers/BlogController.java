@@ -27,4 +27,11 @@ public class BlogController {
         return "Saved Successfully";
     }
 
+    @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'saveBlog')")
+    @PostMapping("/editBlog")
+    public String editBlog(@RequestBody Blogging blogging) {
+//        Object user = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        blogCORSService.save(blogging);
+        return "Saved Successfully";
+    }
 }

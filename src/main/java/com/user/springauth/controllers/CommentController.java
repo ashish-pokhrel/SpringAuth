@@ -18,7 +18,14 @@ public class CommentController {
     private CommentCORSService commentCORSService;
     @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'save')")
     @PostMapping("/save")
-    public String saveBlog(@RequestBody Comment comment) {
+    public String saveComment(@RequestBody Comment comment) {
+        commentCORSService.save(comment);
+        return "Saved Successfully";
+    }
+
+    @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'edit')")
+    @PostMapping("/edit")
+    public String editComment(@RequestBody Comment comment) {
         commentCORSService.save(comment);
         return "Saved Successfully";
     }

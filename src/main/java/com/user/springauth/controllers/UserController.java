@@ -35,6 +35,12 @@ public class UserController {
         return "Saved Successfully";
     }
 
+    //@PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'edit')")
+    @PutMapping("/edit")
+    public String edit(@RequestBody User user) {
+        userCorsService.edit(user);
+        return "Edited Successfully";
+    }
 
     @GetMapping("/loadUserByUsername")
     public UserDetails loadUserByUsername() {

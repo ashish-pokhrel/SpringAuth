@@ -24,6 +24,15 @@ public class BlogCORSService extends RequestService {
         String result = restTemplate.exchange(path, methodType, getHeadersWithToken2(blogging), String.class).getBody();
         return result;
     }
+
+    public String edit(Blogging blogging) {
+        Long currentUser = getCurrentUser();
+        blogging.setPostedBy(currentUser);
+        String path = (blogDomain + "edit");
+        HttpMethod methodType = HttpMethod.POST;
+        String result = restTemplate.exchange(path, methodType, getHeadersWithToken2(blogging), String.class).getBody();
+        return result;
+    }
     public HttpEntity getHeadersWithToken2(Blogging obj) {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity request = new HttpEntity(obj, headers);

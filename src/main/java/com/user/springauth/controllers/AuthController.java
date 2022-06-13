@@ -39,7 +39,7 @@ public class AuthController {
         final User user = userCorsService.getUserByUserName(jwtRequest.getUsername());
         final String token = jwtUtility.generateToken(user);
         this.token = token;
-        return "Bearer " + token;
+        return token;
     }
 
 

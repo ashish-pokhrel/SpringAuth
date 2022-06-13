@@ -51,6 +51,13 @@ public class UserCORSService extends RequestService {
         return result;
     }
 
+    public String edit(User user) {
+        String path = (userDomain+"/edit");
+        HttpMethod methodType = HttpMethod.PUT;
+        String result = restTemplate.exchange(path, methodType, getHeadersWithToken(user), String.class).getBody();
+        return result;
+    }
+
     public User getUserById(Long id) {
         String path = (userDomain + "get/" + id);
         HttpMethod methodType = HttpMethod.GET;
