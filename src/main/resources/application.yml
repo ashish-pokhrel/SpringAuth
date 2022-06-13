@@ -3,3 +3,8 @@ server:
 
 jwt:
   secret: mySecretKey
+
+domain:
+  user: http://localhost:9005/user/
+  blog: http://localhost:9002/blogging/
+  comment: http://localhost:9003/comment/

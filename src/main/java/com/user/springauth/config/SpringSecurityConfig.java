@@ -1,7 +1,7 @@
 package com.user.springauth.config;
 
 import com.user.springauth.JWT.JWTFilter;
-import com.user.springauth.services.UserService;
+import com.user.springauth.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,14 +17,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private UserService userService;
+    private AuthService authService;
 
     @Autowired
     private JWTFilter jwtFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService);
+        auth.userDetailsService(authService);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
 //                .antMatchers("/**")
-                .antMatchers("/user/login")
+                .antMatchers("/login")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

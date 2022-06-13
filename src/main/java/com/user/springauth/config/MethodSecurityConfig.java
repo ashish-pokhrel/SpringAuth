@@ -1,7 +1,7 @@
 package com.user.springauth.config;
 
 import com.user.springauth.auth.PermissionEvaluatorService;
-import com.user.springauth.services.UserService;
+import com.user.springauth.services.UserCORSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
@@ -14,12 +14,12 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
     @Autowired
-    UserService userService;
+    UserCORSService userCorsService;
     @Override
     protected MethodSecurityExpressionHandler createExpressionHandler() {
         DefaultMethodSecurityExpressionHandler expressionHandler =
                 new DefaultMethodSecurityExpressionHandler();
-        expressionHandler.setPermissionEvaluator(new PermissionEvaluatorService(userService));
+        expressionHandler.setPermissionEvaluator(new PermissionEvaluatorService(userCorsService));
         return expressionHandler;
     }
 }

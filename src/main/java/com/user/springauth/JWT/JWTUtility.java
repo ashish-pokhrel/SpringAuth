@@ -57,8 +57,8 @@ public class JWTUtility {
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", user.getRole());
         claims.put("id",user.getId());
-        claims.put("userName",user.getUserName());
-        return doGenerateToken(claims, user.getUserName());
+        claims.put("userName",user.getUsername());
+        return doGenerateToken(claims, user.getUsername());
     }
 
 
@@ -77,8 +77,10 @@ public class JWTUtility {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-    public Boolean validateTokenByUserName(String token, String userName) {
+    public Boolean validateToken(String token) {
         final String username = getUsernameFromToken(token);
-        return (username.equals(userName) && !isTokenExpired(token));
+        if(username ==null)
+            return false;
+        return (!isTokenExpired(token));
     }
 }

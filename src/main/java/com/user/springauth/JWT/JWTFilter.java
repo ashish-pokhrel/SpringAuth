@@ -1,6 +1,6 @@
 package com.user.springauth.JWT;
 
-import com.user.springauth.services.UserService;
+import com.user.springauth.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +21,7 @@ public class JWTFilter extends OncePerRequestFilter {
     private JWTUtility jwtUtility;
 
     @Autowired
-    private UserService userService;
+    private AuthService authService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
         if (null != userName && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails
-                    = userService.loadUserByUsername(userName);
+                    = authService.loadUserByUsername(userName);
 
             if (jwtUtility.validateToken(token, userDetails)) {
                 String requestedUrl = httpServletRequest.getRequestURI();

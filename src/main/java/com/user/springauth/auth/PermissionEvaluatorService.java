@@ -1,13 +1,10 @@
 package com.user.springauth.auth;
 
-import com.user.springauth.JWT.JWTUtility;
 import com.user.springauth.models.User;
-import com.user.springauth.services.UserService;
-import io.jsonwebtoken.Claims;
+import com.user.springauth.services.UserCORSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -15,10 +12,11 @@ import java.io.Serializable;
 @Service
 public class PermissionEvaluatorService implements PermissionEvaluator {
 
-    private UserService userService;
+    @Autowired
+    private UserCORSService userCorsService;
 
-    public PermissionEvaluatorService(UserService userService) {
-        this.userService = userService;
+    public PermissionEvaluatorService(UserCORSService userCorsService) {
+        this.userCorsService = userCorsService;
     }
 
     @Override
@@ -28,7 +26,7 @@ public class PermissionEvaluatorService implements PermissionEvaluator {
         }
         String[] targetType = targetDomainObject.toString().replace('[', ' ').replace(']', ' ').trim().split(",");
         String userName = auth.getName();
-        User user = userService.getUserByUserName(userName);
+        User user = userCorsService.getUserByUserName(userName);
         for (int i = 0; i < targetType.length; i++) {
             if (user.getRole().toUpperCase().equals(targetType[i]))
                 return true;
