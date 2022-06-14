@@ -38,4 +38,14 @@ public class BlogCORSService extends RequestService {
         HttpEntity request = new HttpEntity(obj, headers);
         return request;
     }
+    public HttpEntity getHeadersWithToken() {
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity request = new HttpEntity(headers);
+        return request;
+    }
+    public void deleteById(Long id) {
+        String path = (blogDomain + "delete/" + id);
+        HttpMethod methodType = HttpMethod.DELETE;
+        restTemplate.exchange(path, methodType, getHeadersWithToken(),String.class);
+    }
 }

@@ -50,5 +50,11 @@ public class CommentCORSService extends RequestService {
         HttpEntity request = new HttpEntity(obj, headers);
         return request;
     }
+
+    public void deleteById(Long id) {
+        String path = (commentDomain + "delete/" + id);
+        HttpMethod methodType = HttpMethod.DELETE;
+        restTemplate.exchange(path, methodType, getHeadersWithToken(),String.class);
+    }
 }
 

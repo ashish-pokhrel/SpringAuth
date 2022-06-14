@@ -29,4 +29,11 @@ public class BlogController {
         blogCORSService.save(blogging);
         return "Edited Successfully";
     }
+
+    @PreAuthorize("hasPermission({'ADMIN'}, 'delete')")
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id) {
+        blogCORSService.deleteById(id);
+        return "Deleted Successfully";
+    }
 }

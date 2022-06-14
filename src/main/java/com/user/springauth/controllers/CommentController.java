@@ -30,4 +30,11 @@ public class CommentController {
         commentCORSService.save(comment);
         return "Edited Successfully";
     }
+
+    @PreAuthorize("hasPermission({'ADMIN'}, 'delete')")
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id) {
+        commentCORSService.deleteById(id);
+        return "Deleted Successfully";
+    }
 }
