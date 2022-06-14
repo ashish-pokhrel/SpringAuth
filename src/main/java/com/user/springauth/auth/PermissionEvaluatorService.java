@@ -28,7 +28,7 @@ public class PermissionEvaluatorService implements PermissionEvaluator {
         String userName = auth.getName();
         User user = userCorsService.getUserByUserName(userName);
         for (int i = 0; i < targetType.length; i++) {
-            if (user.getRole().toUpperCase().equals(targetType[i]))
+            if (user.getRole().toUpperCase().equals(targetType[i].toUpperCase()))
                 return true;
         }
         return false;

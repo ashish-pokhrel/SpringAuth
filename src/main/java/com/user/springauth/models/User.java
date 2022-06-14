@@ -14,7 +14,7 @@ import java.util.Collection;
 public class User implements UserDetails {
     private Long Id;
 
-    private String UserName;
+    private String Username;
 
     private String Password;
 
@@ -30,7 +30,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.UserName;
+        return this.Username;
     }
 
     @Override

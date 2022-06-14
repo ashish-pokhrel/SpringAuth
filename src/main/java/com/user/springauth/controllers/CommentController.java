@@ -6,10 +6,9 @@ import com.user.springauth.services.BlogCORSService;
 import com.user.springauth.services.CommentCORSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/comment")
@@ -19,14 +18,16 @@ public class CommentController {
     @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'save')")
     @PostMapping("/save")
     public String saveComment(@RequestBody Comment comment) {
+        comment.setPostedOn(new Date());
         commentCORSService.save(comment);
         return "Saved Successfully";
     }
 
     @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'edit')")
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public String editComment(@RequestBody Comment comment) {
+        comment.setPostedOn(new Date());
         commentCORSService.save(comment);
-        return "Saved Successfully";
+        return "Edited Successfully";
     }
 }
