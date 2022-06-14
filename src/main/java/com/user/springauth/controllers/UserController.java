@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     private UserCORSService userCorsService;
 
-    @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'saveAdmin')")
+    @PreAuthorize("hasPermission({'ADMIN'}, 'saveAdmin')")
     @PostMapping("/saveAdmin")
     public String saveAdmin(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -27,7 +27,7 @@ public class UserController {
         return "Saved Successfully";
     }
 
-    @PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'saveAdmin')")
+    @PreAuthorize("hasPermission({'ADMIN'}, 'saveAdmin')")
     @PostMapping("/saveNormal")
     public String saveNormal(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -35,7 +35,7 @@ public class UserController {
         return "Saved Successfully";
     }
 
-    //@PreAuthorize("hasPermission({'ADMIN','NORMAL'}, 'edit')")
+    @PreAuthorize("hasPermission({'ADMIN'}, 'edit')")
     @PutMapping("/edit")
     public String edit(@RequestBody User user) {
         userCorsService.edit(user);
