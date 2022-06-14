@@ -47,4 +47,10 @@ public class UserController {
         var result = userCorsService.loadUserByUsername("admin7@miu.edu");
         return  result;
     }
+    @PreAuthorize("hasPermission({'ADMIN'}, 'delete')")
+    @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id) {
+        userCorsService.deleteById(id);
+        return "Deleted Successfully";
+    }
 }

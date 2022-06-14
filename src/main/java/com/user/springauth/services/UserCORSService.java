@@ -52,7 +52,7 @@ public class UserCORSService extends RequestService {
     }
 
     public String edit(User user) {
-        String path = (userDomain+"/edit");
+        String path = (userDomain + "/edit");
         HttpMethod methodType = HttpMethod.PUT;
         String result = restTemplate.exchange(path, methodType, getHeadersWithToken(user), String.class).getBody();
         return result;
@@ -82,5 +82,11 @@ public class UserCORSService extends RequestService {
 //        UserDetails result = restTemplate.exchange(path, methodType, getHeadersWithToken(), UserDetails.class).getBody();
 //        return result;
         return userDetails;
+    }
+
+    public void deleteById(Long id) {
+        String path = (userDomain + "delete/" + id);
+        HttpMethod methodType = HttpMethod.DELETE;
+        restTemplate.exchange(path, methodType, getHeadersWithToken(),String.class);
     }
 }
